@@ -6,22 +6,36 @@ public class TesteTp1 {
 		Scanner ler = new Scanner(System.in);
 		int contCadastro=0, opc2=0;
 		int opc, temas, palavras, jogar;
-		int verificador1=0;
+		int veriTema=0, veriTema2=0, veriTema3=0;
 		
-		//String lerTemas [] = new String [50];
-		String[][] lerTemas2 = new String[50][11];
+		
+		String[][] lerTemas2 = new String[51][51];
 		String nomeTema;
+		String excluirTema;
 		
 		
-		lerTemas2[0][0] = "times de futebol";lerTemas2[0][1] = "cruzeiro"; lerTemas2[0][2]= "goias"; lerTemas2[0][3]= "Flamengo"; lerTemas2[0][4]= "Santos"; lerTemas2[0][5]= "Botafogo";lerTemas2[0][6]= "Fluminense";lerTemas2[0][7]= "Sao Paulo";lerTemas2[0][8]= "Criciuma";lerTemas2[0][9]= "Real Madrid";lerTemas2[0][10]= "Barcelona";
-		lerTemas2[1][0] = "times de basquete"; lerTemas2[1][1] = "celtics"; lerTemas2[1][2]= "cavaliers"; lerTemas2[1][3]= "Pistons"; lerTemas2[1][4]= "Pacers"; lerTemas2[1][5]= "Warriors";lerTemas2[1][6]= "Clippers";lerTemas2[1][7]= "Lakers";lerTemas2[1][8]= "Suns";lerTemas2[1][9]= "Rockets";lerTemas2[1][10]= "Pelicans";
-		lerTemas2[2][0] = "paises"; lerTemas2[2][1] = "alemanha"; lerTemas2[2][2]= "angola"; lerTemas2[2][3]= "Bahamas"; lerTemas2[2][4]= "Bangladexe"; lerTemas2[2][5]= "Brasil";lerTemas2[2][6]= "Camaroes";lerTemas2[2][7]= "Equador";lerTemas2[2][8]= "Filipinas";lerTemas2[2][9]= "Hungria";lerTemas2[2][10]= "Iraque";
-		lerTemas2[3][0] = "animais";lerTemas2[3][1] = "abelha"; lerTemas2[3][2]= "baiacu"; lerTemas2[3][3]= "Aranha"; lerTemas2[3][4]= "Andorinha"; lerTemas2[3][5]= "Carrapato";lerTemas2[3][6]= "Diabo da Tasmania";lerTemas2[3][7]= "Ema";lerTemas2[3][8]= "Enguia";lerTemas2[3][9]= "Escaravelho";lerTemas2[3][10]= "Faisao";
-		lerTemas2[4][0] = "marcas";lerTemas2[4][1] = "adidas"; lerTemas2[4][2]= "bad Boy"; lerTemas2[4][3]= "Cavalera"; lerTemas2[4][4]= "Electrolux"; lerTemas2[4][5]= "Fanta";lerTemas2[4][6]= "Havaianas";lerTemas2[4][7]= "Huawei";lerTemas2[4][8]= "Jaguar";lerTemas2[4][9]= "Lacoste";lerTemas2[4][10]= "Jeep";
+		lerTemas2[0][0] = "times de futebol";lerTemas2[0][1] = "cruzeiro"; lerTemas2[0][2]= "goias"; lerTemas2[0][3]= "flamengo"; lerTemas2[0][4]= "santos"; lerTemas2[0][5]= "botafogo";lerTemas2[0][6]= "fluminense";lerTemas2[0][7]= "sao paulo";lerTemas2[0][8]= "criciuma";lerTemas2[0][9]= "real Madrid";lerTemas2[0][10]= "barcelona";
+		lerTemas2[1][0] = "times de basquete"; lerTemas2[1][1] = "celtics"; lerTemas2[1][2]= "cavaliers"; lerTemas2[1][3]= "pistons"; lerTemas2[1][4]= "pacers"; lerTemas2[1][5]= "warriors";lerTemas2[1][6]= "clippers";lerTemas2[1][7]= "lakers";lerTemas2[1][8]= "suns";lerTemas2[1][9]= "rockets";lerTemas2[1][10]= "pelicans";
+		lerTemas2[2][0] = "paises"; lerTemas2[2][1] = "alemanha"; lerTemas2[2][2]= "angola"; lerTemas2[2][3]= "bahamas"; lerTemas2[2][4]= "bangladexe"; lerTemas2[2][5]= "brasil";lerTemas2[2][6]= "camaroes";lerTemas2[2][7]= "equador";lerTemas2[2][8]= "filipinas";lerTemas2[2][9]= "hungria";lerTemas2[2][10]= "iraque";
+		lerTemas2[3][0] = "animais";lerTemas2[3][1] = "abelha"; lerTemas2[3][2]= "baiacu"; lerTemas2[3][3]= "aranha"; lerTemas2[3][4]= "andorinha"; lerTemas2[3][5]= "carrapato";lerTemas2[3][6]= "diabo da tasmania";lerTemas2[3][7]= "ema";lerTemas2[3][8]= "enguia";lerTemas2[3][9]= "escaravelho";lerTemas2[3][10]= "faisao";
+		lerTemas2[4][0] = "marcas";lerTemas2[4][1] = "adidas"; lerTemas2[4][2]= "bad Boy"; lerTemas2[4][3]= "cavalera"; lerTemas2[4][4]= "electrolux"; lerTemas2[4][5]= "fanta";lerTemas2[4][6]= "havaianas";lerTemas2[4][7]= "huawei";lerTemas2[4][8]= "jaguar";lerTemas2[4][9]= "lacoste";lerTemas2[4][10]= "jeep";
 		
-		for (int k = 5; k < 10; k++) {
+		for (int k = 5; k < 51; k++) {
             lerTemas2[k][0] = "vazio";
         }
+		
+		for (int l = 5; l < 51; l++) {
+			for (int m = 1; m < 51; m++){
+				lerTemas2[l][m] = "vazio";
+			}
+        }
+		
+		for (int w = 0; w < 51; w++) {
+			for (int z = 11; z < 51; z++){
+				lerTemas2[w][z] = "vazio";
+			}
+        }
+		
 		
 
 		do {
@@ -58,10 +72,10 @@ public class TesteTp1 {
 							            	System.out.printf("O tema %s já existe!", nomeTema ); 
 							                System.out.println(" ");
 							                System.out.println(" ");
-							                verificador1 = 1;
+							                veriTema = 1;
 							            }
 							        }
-							        if (verificador1 != 1){
+							        if (veriTema!=1){
 							            System.out.printf("O tema %s foi adicionado!!!", nomeTema);
 							            System.out.println(" ");
 							            for(int b=0; b<50; b++){
@@ -73,7 +87,7 @@ public class TesteTp1 {
 							        }
 									
 									
-									if(contCadastro <2){
+									if(contCadastro <50){
                                         System.out.println("Quer cadastrar mais temas?");
                                         System.out.println("Digite 1 para sim e qualquer OUTRO número para não!!!");
                                         opc2 = ler.nextInt();
@@ -89,8 +103,35 @@ public class TesteTp1 {
 								break;
 								
 							case 2:
-								System.out.println("Excluir Temas");
+								System.out.println("        Excluir Temas");
+								System.out.println("Digite o nome do Tema a ser exluido: ");
+								excluirTema = ler.nextLine();
+								excluirTema = excluirTema.toLowerCase();
 								
+								for(int c=0; c<50; c++){
+						            if(lerTemas2[c][0].equals(excluirTema)){
+						            	for(int d=1; d<50; d++){
+						            		if(lerTemas2[c][d].equals("vazio") == false){
+                                                System.out.println("Não é possível exluir temas que possuam palavras cadastradas!!");
+                                                veriTema2 = 1;
+                                                break;
+                                            }
+						            	} 
+						            	if(veriTema2!=1) {
+							            	System.out.printf("O tema %s foi excluido!!!", excluirTema); 
+							            	lerTemas2[c][0] = lerTemas2[c][0].replace(lerTemas2[c][0], "vazio");
+							                System.out.println(" ");
+							                System.out.println(" ");
+							                veriTema3 = 1;
+						                }
+						            }
+						        }
+								
+								
+								if (veriTema3!=1){
+									System.out.printf("O tema %s não foi encontrado!!!", excluirTema);
+									System.out.println(" ");
+								}
 
 								break;
 								
