@@ -1,12 +1,18 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Random;
 public class TesteTp1 {
 	static Scanner ler = new Scanner(System.in);
+	static Random palavraAleatoria = new Random();
 	static int opc, palavras, jogar;
 	static String[][] lerTemas2 = new String[51][51];
 
 	public static void main(String[] args) {
 	
+		String nomeTema;
+		int veriJogar=0, receber, chances =0, contador=0, parar=0, novamente=0, ganhar=2;
+		String[] nomeLetra = new String[50];
+		String letra, certa;
 		
 		lerTemas2[0][0] = "times de futebol";lerTemas2[0][1] = "cruzeiro"; lerTemas2[0][2]= "goias"; lerTemas2[0][3]= "flamengo"; lerTemas2[0][4]= "santos"; lerTemas2[0][5]= "botafogo";lerTemas2[0][6]= "fluminense";lerTemas2[0][7]= "sao paulo";lerTemas2[0][8]= "criciuma";lerTemas2[0][9]= "real Madrid";lerTemas2[0][10]= "barcelona";
 		lerTemas2[1][0] = "times de basquete"; lerTemas2[1][1] = "celtics"; lerTemas2[1][2]= "cavaliers"; lerTemas2[1][3]= "pistons"; lerTemas2[1][4]= "pacers"; lerTemas2[1][5]= "warriors";lerTemas2[1][6]= "clippers";lerTemas2[1][7]= "lakers";lerTemas2[1][8]= "suns";lerTemas2[1][9]= "rockets";lerTemas2[1][10]= "pelicans";
@@ -18,6 +24,7 @@ public class TesteTp1 {
             lerTemas2[k][0] = "null";
         }
 		
+		
 		metodoPalavra(lerTemas2,5,1);
 		metodoPalavra(lerTemas2,0,11);
 
@@ -26,7 +33,6 @@ public class TesteTp1 {
 			System.out.println("                                MENU PRINCIPAL");
 			System.out.println("1. Gerenciador de Temas, 2. Gerenciar Palavras, 3. Jogar e 4. Sair:");
 			opc = ler.nextInt();
-			
 			switch (opc) {
 				case 1:
 					metodoGerenciarTemas(lerTemas2);
@@ -36,26 +42,137 @@ public class TesteTp1 {
 							
 					break;
 				case 3:
-					
+					System.out.println("1. Inicar Jogo, 2.Sair");
+					jogar = ler.nextInt();
+					ler.nextLine();
 					do {
-						System.out.println("Jogar:");
-						jogar = ler.nextInt();
+						
 						switch(jogar) {
 							case 1:
+								for(int z=0; z<50; z++){
+									nomeLetra[z]="]";	
+								}
+								System.out.println("");
+								System.out.println("          Selação de Tema: ");
+							
+								System.out.println("Digite o Tema que você deseja jogar: ");
+								nomeTema = ler.nextLine();
+								nomeTema= nomeTema.toLowerCase();
+			                    chances =0;
+			                    
+								for(int j=0; j<50; j++){
+									
+			                        if(lerTemas2[j][0].equals(nomeTema)){
+			                        	veriJogar=1;
+			                        	System.out.printf("O tema %s foi encontrado!", nomeTema);
+			                            System.out.println(" ");
+			                            System.out.println("Inciando jogo...");
+			                            
+			                            
+			                            do {
+			                            	
+			                            	receber = palavraAleatoria.nextInt(50) +1;
+			                                if(lerTemas2[j][receber].equals("null") == false) {
+			                                	
+			                                	do {
+				                                	System.out.println(" ");
+				                                	System.out.println("Digite uma letra: ");
+				                                	letra= ler.nextLine();
+				                                	letra= letra.toLowerCase();		
+				                                	
+				                                	for(int q=0; q<50; q++){ 
+				                                		
+				                                		if (nomeLetra[q].equals(letra)) {
+		                                                    System.out.println("Você já digitou essa letra, tente outra!");
+		                                                    parar=1;
+		                                                }
+				                                		
+				                                	}                       
+				                                	if(lerTemas2[j][receber].contains(letra)){
+				                                		ganhar++;
+				                                		nomeLetra[contador] = nomeLetra[contador].replace(nomeLetra[contador], letra);
+				                                		System.out.printf("Essa palavra possui a letra: %s", nomeLetra[contador]);
+				                                		
+				                                		
+				                                		continue;
+				                                		
+				                                    }else {
+				                                    	ganhar++;
+				                                    	chances++;
+				                                    	System.out.printf("Essa palavra não possui a letra: %s", letra);
+				                                    	System.out.println(" ");
+				                                    
+				                                    	if(ganhar ==6) {
+			                                                System.out.println("Você chegou a limite de tentativas");
+			                                                System.out.println("Digite a palavra da qual você acredita ser a certa: ");		        
+			                                                certa = ler.nextLine();
+			                                                certa = certa.toLowerCase();
+			                                                
+			                                                if(lerTemas2[j][receber].equals(certa)) {
+			                                                    System.out.println(" ");
+			                                                    System.out.println("Parabens, você acertou a palavra!");
+			                                                    System.out.println("Deseja jogar novamente?");
+			                                                    System.out.println("Digite 1 para sim e qualquer OUTRO número para não!!!");  
+					                                            novamente = ler.nextInt();
+					                                            ler.nextLine();
+					                                            if(novamente!=1){
+						                                        	System.out.println("Encerrando o jogo...");
+						                                        	return;
+						                                        }  
+				                                    	 
+			                                                }else  {
+			                                                	System.out.println("Você errou");
+			                                                    System.out.println(" ");
+			                                                    System.out.println("Você perdeu! Deseja jogar novamente?");
+					                                            System.out.println("Digite 1 para sim e qualquer OUTRO número para não!!!");  
+					                                            novamente = ler.nextInt();
+					                                            ler.nextLine();
+					                                            if(novamente!=1){
+						                                        	System.out.println("Encerrando o jogo...");
+						                                        	return;
+						         
+						                                        }
+			                                                	
+			                                                }
+			                                                continue;
+				                                    	}
+				                                        if(chances == 5){
+				                                            System.out.println("Você perdeu! Deseja jogar novamente?");
+				                                            System.out.println("Digite 1 para sim e qualquer OUTRO número para não!!!");  
+				                                            novamente = ler.nextInt();
+				                                            ler.nextLine();
+				                                            if(novamente!=1){
+					                                        	System.out.println("Encerrando o jogo...");
+					                                        	return;
+					         
+					                                        }
+				                                            continue;  
+				         
+				                                        }
+				                                       continue;
+				                                    }
+				                                	
+			                                    }while(chances !=5);      
+			                                }
+
+			                            }while(lerTemas2[j][receber].equals("null")); 
+			                            break;
+			                        }
+			                    }
 								
+			                    if(veriJogar!=1) {
+			                    	System.out.printf("O tema %s não encontrado!", nomeTema);
+			                    	System.out.println(" ");
+			                        break;
+			                    }
+
 								break;
 							case 2:
-								
-								break;
-							case 3:
-								
-								break;
-							case 4:
 								System.out.println("Voltando ao Menu....");
 								break;
 						}
 						
-					}while(jogar>0 && jogar<4);
+					}while(jogar>0 && jogar<2);
 					break;
 				case 4:
 					System.out.println("Saindo...");
@@ -64,6 +181,8 @@ public class TesteTp1 {
 		
 		}while(opc>0 && opc<4);
 	}
+	
+	
 	static void metodoPalavra(String[][] lerTemas2, int i, int k) {
 		for (int m=i ; m < 51; m++) {
 			for (int n = k; n < 51; n++){
@@ -182,13 +301,12 @@ public class TesteTp1 {
 			
 		}while(temas>0 && temas<4);
 	}
-	
-	
+
 	static void metodoGerenciarPalavras(String[][] lerTemas2) {
 		int contPalavra=0, opc2=0;
-		int veriTema=0, veriTema2=0, veriTema3=0, veriTema4=0,veriPalavra=0, veriPalavra2=0;
+		int veriTema=0, veriTema4=0,veriPalavra=0, veriPalavra2=0, veriPalavra3=0;
 		int palavras;
-		String nomeTema, excluirTema, nomePalavra, excluirPalavra;
+		String nomeTema, nomePalavra, excluirPalavra;
 
 		do {
 			System.out.println("");
@@ -285,6 +403,30 @@ public class TesteTp1 {
                     System.out.println(" ");
                     break;
 				case 3:
+					System.out.println("        Procurar Palavras: ");
+					System.out.println("Digite o nome da palavra que você quer encontrar: ");
+					nomePalavra = ler.nextLine();
+					nomePalavra = nomePalavra.toLowerCase();
+					
+					for(int t=0; t<50; t++) {
+                        
+                        for(int g=1; g<50; g++){
+                            if(lerTemas2[t][g].equals(nomePalavra)){
+                            	System.out.printf("A palavra %s foi encontrada no tema %s!", nomePalavra, lerTemas2[t][0] );
+                            	System.out.println(" "); 
+                            	veriPalavra3 = 1;
+                                break;
+                            }
+                        }
+                        
+					}
+					if(veriPalavra3 != 1){
+                        System.out.printf("A palavra %s não foi encontrada!", nomePalavra );
+                        System.out.println(" ");
+                        System.out.println("Voltando ao Menu.... ");
+                        break;
+					}
+                      
 
 					
 					break;
